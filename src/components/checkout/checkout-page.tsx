@@ -9,8 +9,6 @@ import { useRouter } from "next/navigation";
 import { formatPrice } from "@/lib/utils";
 import { StripePayment } from "./stripe-payment";
 import { 
-  CreditCardIcon, 
-  TruckIcon, 
   ShieldCheckIcon,
   CheckIcon,
   ArrowLeftIcon
@@ -92,7 +90,7 @@ export function CheckoutPage() {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handlePaymentSuccess = (paymentIntent: any) => {
+  const handlePaymentSuccess = (paymentIntent: Record<string, unknown>) => {
     setPaymentSuccess(true);
     clearCart();
     // In a real app, you would create an order record here

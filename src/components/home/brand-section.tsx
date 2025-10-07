@@ -55,7 +55,7 @@ export function BrandSection() {
             Curated Brands
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Discover authentic pieces from the world's most prestigious luxury brands. 
+            Discover authentic pieces from the world&apos;s most prestigious luxury brands. 
             Each item is carefully authenticated and comes with our guarantee.
           </p>
         </div>

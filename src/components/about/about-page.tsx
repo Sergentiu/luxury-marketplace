@@ -106,7 +106,7 @@ export function AboutPage() {
                 </p>
                 <p>
                   We set out to change that. By combining expert authentication with cutting-edge 
-                  technology, we've created a marketplace where buyers can shop with complete 
+                  technology, we&apos;ve created a marketplace where buyers can shop with complete 
                   confidence, knowing every item is 100% authentic and fairly priced.
                 </p>
                 <p>
@@ -188,7 +188,7 @@ export function AboutPage() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">What Our Customers Say</h2>
             <p className="text-xl text-gray-600">
-              Don't just take our word for it - hear from our satisfied customers
+              Don&apos;t just take our word for it - hear from our satisfied customers
             </p>
           </div>
           
@@ -217,7 +217,7 @@ export function AboutPage() {
                       <StarIcon key={i} className="h-5 w-5 text-yellow-400 fill-current" />
                     ))}
                   </div>
-                  <p className="text-gray-600 mb-4">"{testimonial.text}"</p>
+                  <p className="text-gray-600 mb-4">&ldquo;{testimonial.text}&rdquo;</p>
                   <p className="font-medium text-gray-900">{testimonial.author}</p>
                 </CardContent>
               </Card>

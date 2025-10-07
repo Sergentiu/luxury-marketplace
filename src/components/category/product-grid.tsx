@@ -38,9 +38,7 @@ export function ProductGrid({ products, sortBy, onSortChange }: ProductGridProps
     );
   };
 
-  const getSortLabel = (sort: SortOption) => {
-    return sortOptions.find(option => option.value === sort)?.label || "Sort";
-  };
+  // Sort label function removed as it's unused
 
   if (products.length === 0) {
     return (

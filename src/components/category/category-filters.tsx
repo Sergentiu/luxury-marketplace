@@ -35,7 +35,7 @@ const priceRanges = [
   { label: "Over $10,000", min: 10000, max: 100000 }
 ];
 
-export function CategoryFilters({ filters, onFilterChange, category }: CategoryFiltersProps) {
+export function CategoryFilters({ filters, onFilterChange }: CategoryFiltersProps) {
   const [customPriceRange, setCustomPriceRange] = useState({
     min: filters.priceRange?.min || 0,
     max: filters.priceRange?.max || 100000
