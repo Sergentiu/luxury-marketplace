@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
 const featuredBrands = [
@@ -68,9 +69,11 @@ export function BrandSection() {
                   {/* Brand header */}
                   <div className={`${brand.color} p-6 text-center`}>
                     <div className="w-24 h-24 mx-auto mb-4 bg-white rounded-full flex items-center justify-center">
-                      <img
+                      <Image
                         src={brand.logo}
                         alt={`${brand.name} logo`}
+                        width={64}
+                        height={64}
                         className="w-16 h-16 object-contain"
                       />
                     </div>

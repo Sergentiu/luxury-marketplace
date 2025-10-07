@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { formatDate } from "@/lib/utils";
 import { CalendarIcon, UserIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
 
 // Mock blog posts
 const blogPosts = [
@@ -144,9 +145,11 @@ export function BlogPage() {
             <Card className="overflow-hidden">
               <div className="md:flex">
                 <div className="md:w-1/2">
-                  <img
+                  <Image
                     src={blogPosts[0].featuredImage}
                     alt={blogPosts[0].title}
+                    width={600}
+                    height={400}
                     className="w-full h-64 md:h-full object-cover"
                   />
                 </div>
@@ -189,9 +192,11 @@ export function BlogPage() {
             <Card key={post.id} className="group cursor-pointer overflow-hidden">
               <Link href={`/blog/${post.slug}`}>
                 <div className="aspect-video overflow-hidden">
-                  <img
+                  <Image
                     src={post.featuredImage}
                     alt={post.title}
+                    width={400}
+                    height={225}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>

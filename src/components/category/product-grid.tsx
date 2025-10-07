@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { HeartIcon } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartSolid } from "@heroicons/react/24/solid";
 import Link from "next/link";
+import Image from "next/image";
 import { formatPrice } from "@/lib/utils";
 import { SortOption } from "@/types";
 import { 
@@ -124,9 +125,11 @@ export function ProductGrid({ products, sortBy, onSortChange }: ProductGridProps
 
             <Link href={`/product/${product.id}`}>
               <div className={viewMode === "grid" ? "aspect-square overflow-hidden rounded-t-lg" : "flex"}>
-                <img
-                  src={product.image}
-                  alt={product.name}
+                <Image
+                  src={product.image as string}
+                  alt={product.name as string}
+                  width={viewMode === "grid" ? 300 : 128}
+                  height={viewMode === "grid" ? 300 : 128}
                   className={
                     viewMode === "grid" 
                       ? "w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"

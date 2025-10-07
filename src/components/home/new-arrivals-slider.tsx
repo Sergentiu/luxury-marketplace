@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 import { formatPrice } from "@/lib/utils";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 
@@ -114,9 +115,11 @@ export function NewArrivalsSlider() {
           {visibleItems.map((item) => (
             <Card key={item.id} className="group product-card-hover cursor-pointer">
               <div className="aspect-square overflow-hidden rounded-t-lg">
-                <img
+                <Image
                   src={item.image}
                   alt={item.name}
+                  width={300}
+                  height={300}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>

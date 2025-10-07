@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 // Navigation component imports
 import { useCart } from "@/contexts/cart-context";
 import { useSession, signOut } from "next-auth/react";
@@ -111,9 +112,11 @@ export function Navigation() {
                   className="p-2 text-gray-700 hover:text-gray-900 flex items-center gap-2"
                 >
                   {session.user?.image ? (
-                    <img
+                    <Image
                       src={session.user.image}
                       alt={session.user.name || "User"}
+                      width={24}
+                      height={24}
                       className="h-6 w-6 rounded-full"
                     />
                   ) : (

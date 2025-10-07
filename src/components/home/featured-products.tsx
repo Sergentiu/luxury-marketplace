@@ -3,6 +3,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 import { HeartIcon } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartSolidIcon } from "@heroicons/react/24/solid";
 import { formatPrice } from "@/lib/utils";
@@ -156,9 +157,11 @@ export function FeaturedProducts() {
 
               <Link href={`/product/${product.id}`}>
                 <div className="aspect-square overflow-hidden rounded-t-lg">
-                  <img
-                    src={product.image}
-                    alt={product.name}
+                  <Image
+                    src={product.image as string}
+                    alt={product.name as string}
+                    width={300}
+                    height={300}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>

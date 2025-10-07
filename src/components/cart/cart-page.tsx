@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { TrashIcon, MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import Image from "next/image";
 import { formatPrice } from "@/lib/utils";
 import { useCart } from "@/contexts/cart-context";
 
@@ -50,9 +51,11 @@ export function CartPage() {
                 <CardContent className="p-6">
                   <div className="flex items-start space-x-4">
                     <div className="w-24 h-24 flex-shrink-0">
-                      <img
+                      <Image
                         src={item.product.images[0]}
                         alt={item.product.name}
+                        width={96}
+                        height={96}
                         className="w-full h-full object-cover rounded-lg"
                       />
                     </div>

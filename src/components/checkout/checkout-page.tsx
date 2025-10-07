@@ -14,6 +14,7 @@ import {
   ArrowLeftIcon
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import Image from "next/image";
 
 export function CheckoutPage() {
   const [step, setStep] = useState(1);
@@ -399,9 +400,11 @@ export function CheckoutPage() {
                   {cart.map((item) => (
                     <div key={item.id} className="flex items-center space-x-3">
                       <div className="w-16 h-16 bg-gray-200 rounded-md flex-shrink-0">
-                        <img
+                        <Image
                           src={item.product.images?.[0] || "/placeholder-product.jpg"}
                           alt={item.product.name}
+                          width={64}
+                          height={64}
                           className="w-full h-full object-cover rounded-md"
                         />
                       </div>

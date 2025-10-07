@@ -1,13 +1,3 @@
-import NextAuth from "next-auth"
+import { GET, POST } from "@/lib/auth"
 
-const handler = NextAuth({
-  providers: [],
-  session: {
-    strategy: "jwt"
-  },
-  pages: {
-    signIn: "/authentication",
-  }
-})
-
-export { handler as GET, handler as POST }
+export { GET, POST }
