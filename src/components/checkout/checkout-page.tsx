@@ -20,7 +20,8 @@ export function CheckoutPage() {
   const [step, setStep] = useState(1);
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [paymentError, setPaymentError] = useState("");
-  const { cart, clearCart } = useCart();
+  const { state, clearCart } = useCart();
+  const { items: cart } = state;
   const { data: session, status } = useSession();
   const router = useRouter();
 
