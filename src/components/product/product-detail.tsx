@@ -3,12 +3,13 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { HeartIcon, HeartIcon as HeartSolidIcon } from "@heroicons/react/24/outline";
+import { HeartIcon } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartSolid } from "@heroicons/react/24/solid";
 import { ShareIcon, ShieldCheckIcon, TruckIcon, ArrowUturnLeftIcon } from "@heroicons/react/24/outline";
 import { formatPrice } from "@/lib/utils";
 import { Product } from "@/types";
 import { useCart } from "@/contexts/cart-context";
+import Image from "next/image";
 
 interface ProductDetailProps {
   product: Product;
@@ -59,9 +60,11 @@ export function ProductDetail({ product }: ProductDetailProps) {
           {/* Product Images */}
           <div className="space-y-4">
             <div className="aspect-square overflow-hidden rounded-lg bg-white shadow-sm">
-              <img
+              <Image
                 src={product.images[selectedImage]}
                 alt={product.name}
+                width={500}
+                height={500}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -75,9 +78,11 @@ export function ProductDetail({ product }: ProductDetailProps) {
                     selectedImage === index ? "border-primary" : "border-gray-200 hover:border-gray-300"
                   }`}
                 >
-                  <img
+                  <Image
                     src={image}
                     alt={`${product.name} view ${index + 1}`}
+                    width={100}
+                    height={100}
                     className="w-full h-full object-cover"
                   />
                 </button>
