@@ -112,8 +112,8 @@ export function AccountPage() {
               </div>
             )}
             <div>
-              <h3 className="text-lg font-semibold">{user?.name}</h3>
-              <p className="text-gray-600">{user?.email}</p>
+              <h3 className="text-lg font-semibold">{user?.name as string}</h3>
+              <p className="text-gray-600">{user?.email as string}</p>
             </div>
           </div>
           
@@ -124,7 +124,7 @@ export function AccountPage() {
               </label>
               <input
                 type="text"
-                defaultValue={user?.name}
+                defaultValue={user?.name as string}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
               />
             </div>
@@ -134,7 +134,7 @@ export function AccountPage() {
               </label>
               <input
                 type="email"
-                defaultValue={user?.email}
+                defaultValue={user?.email as string}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
               />
             </div>
@@ -144,7 +144,7 @@ export function AccountPage() {
               </label>
               <input
                 type="tel"
-                defaultValue={user?.phone}
+                defaultValue={user?.phone as string}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
               />
             </div>
@@ -154,7 +154,7 @@ export function AccountPage() {
               </label>
               <input
                 type="text"
-                value={user?.memberSince}
+                value={user?.memberSince as string}
                 disabled
                 className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50"
               />
@@ -171,15 +171,15 @@ export function AccountPage() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary mb-2">{user?.totalOrders}</div>
+              <div className="text-3xl font-bold text-primary mb-2">{user?.totalOrders as number}</div>
               <div className="text-sm text-gray-600">Total Orders</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary mb-2">${user?.totalSpent?.toLocaleString()}</div>
+              <div className="text-3xl font-bold text-primary mb-2">${(user?.totalSpent as number)?.toLocaleString()}</div>
               <div className="text-sm text-gray-600">Total Spent</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary mb-2">{user?.loyaltyPoints}</div>
+              <div className="text-3xl font-bold text-primary mb-2">{user?.loyaltyPoints as number}</div>
               <div className="text-sm text-gray-600">Loyalty Points</div>
             </div>
           </div>
@@ -282,7 +282,7 @@ export function AccountPage() {
             <div className="border border-gray-200 rounded-lg p-4">
               <div className="flex justify-between items-start">
                 <div>
-                  <div className="font-semibold">{user?.name}</div>
+                  <div className="font-semibold">{user?.name as string}</div>
                   <div className="text-sm text-gray-600">
                     123 Main Street<br />
                     New York, NY 10001<br />
