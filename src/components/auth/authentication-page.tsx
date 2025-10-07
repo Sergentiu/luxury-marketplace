@@ -92,7 +92,7 @@ export function AuthenticationPage() {
           router.push("/account");
         }
       }
-    } catch (error) {
+    } catch {
       setError("An error occurred. Please try again.");
     } finally {
       setIsLoading(false);
@@ -103,7 +103,7 @@ export function AuthenticationPage() {
     setIsLoading(true);
     try {
       await signIn(provider, { callbackUrl: "/account" });
-    } catch (error) {
+    } catch {
       setError("Social login failed. Please try again.");
     } finally {
       setIsLoading(false);

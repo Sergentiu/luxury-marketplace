@@ -21,7 +21,7 @@ interface CategoryPageProps {
 export function CategoryPage({ category, searchParams }: CategoryPageProps) {
   const [filters, setFilters] = useState<ProductFilters>({
     brand: searchParams.brand ? [searchParams.brand] : [],
-    condition: searchParams.condition ? [searchParams.condition as any] : [],
+    condition: searchParams.condition ? [searchParams.condition as string] : [],
     priceRange: searchParams.price_min && searchParams.price_max ? {
       min: parseInt(searchParams.price_min),
       max: parseInt(searchParams.price_max)
@@ -32,7 +32,7 @@ export function CategoryPage({ category, searchParams }: CategoryPageProps) {
     (searchParams.sort as SortOption) || SortOption.NEWEST
   );
 
-  const [products, setProducts] = useState<any[]>([]);
+  const [products, setProducts] = useState<Record<string, unknown>[]>([]);
   const [loading, setLoading] = useState(true);
 
   // Mock data for demonstration
@@ -113,7 +113,7 @@ export function CategoryPage({ category, searchParams }: CategoryPageProps) {
     ];
 
     // Filter products based on current filters
-    let filteredProducts = mockProducts.filter(product => {
+    const filteredProducts = mockProducts.filter(product => {
       if (filters.brand && filters.brand.length > 0 && !filters.brand.includes(product.brand)) {
         return false;
       }

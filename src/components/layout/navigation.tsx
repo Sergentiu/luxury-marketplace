@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+// Navigation component imports
 import { useCart } from "@/contexts/cart-context";
 import { useSession, signOut } from "next-auth/react";
 import {
@@ -34,7 +33,7 @@ export function Navigation() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const { getCartItemCount, getWishlistCount } = useCart();
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
 
   return (
     <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">

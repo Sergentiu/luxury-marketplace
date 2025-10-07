@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { formatDate } from "@/lib/utils";
-import { CalendarIcon, UserIcon, TagIcon } from "@heroicons/react/24/outline";
+import { CalendarIcon, UserIcon } from "@heroicons/react/24/outline";
 
 // Mock blog posts
 const blogPosts = [

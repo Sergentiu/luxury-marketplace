@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface StripePaymentProps {
   amount: number;
-  onSuccess: (paymentIntent: any) => void;
+  onSuccess: (paymentIntent: Record<string, unknown>) => void;
   onError: (error: string) => void;
 }
 
@@ -21,7 +21,7 @@ export function StripePayment({ amount, onSuccess, onError }: StripePaymentProps
       // Mock payment for build purposes
       await new Promise(resolve => setTimeout(resolve, 2000));
       onSuccess({ id: "pi_mock_payment_intent" });
-    } catch (error) {
+    } catch {
       onError("Payment failed");
     } finally {
       setIsLoading(false);

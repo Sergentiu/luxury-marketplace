@@ -3,20 +3,18 @@
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { HeartIcon, HeartIcon as HeartSolidIcon } from "@heroicons/react/24/outline";
+import { HeartIcon } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartSolid } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { formatPrice } from "@/lib/utils";
 import { SortOption } from "@/types";
 import { 
-  ChevronDownIcon,
-  Bars3Icon,
   Squares2X2Icon,
   ListBulletIcon
 } from "@heroicons/react/24/outline";
 
 interface ProductGridProps {
-  products: any[];
+  products: Record<string, unknown>[];
   sortBy: SortOption;
   onSortChange: (sort: SortOption) => void;
 }

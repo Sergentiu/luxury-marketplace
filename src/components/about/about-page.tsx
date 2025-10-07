@@ -8,6 +8,7 @@ import {
   StarIcon
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import Image from "next/image";
 
 const stats = [
   { number: "50,000+", label: "Authenticated Items" },
@@ -70,7 +71,7 @@ export function AboutPage() {
             About LuxuryMarket
           </h1>
           <p className="text-xl max-w-3xl mx-auto leading-relaxed">
-            We're passionate about making authentic luxury accessible to everyone. 
+            We&apos;re passionate about making authentic luxury accessible to everyone. 
             Our mission is to connect discerning buyers with verified luxury items 
             while ensuring complete authenticity and exceptional service.
           </p>
@@ -109,7 +110,7 @@ export function AboutPage() {
                   confidence, knowing every item is 100% authentic and fairly priced.
                 </p>
                 <p>
-                  Today, we're proud to be the trusted destination for luxury enthusiasts worldwide, 
+                  Today, we&apos;re proud to be the trusted destination for luxury enthusiasts worldwide, 
                   offering an unparalleled selection of authenticated designer items with the 
                   highest standards of service and security.
                 </p>
@@ -163,9 +164,11 @@ export function AboutPage() {
               <Card key={index} className="text-center">
                 <CardContent className="p-6">
                   <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden">
-                    <img
+                    <Image
                       src={member.image}
                       alt={member.name}
+                      width={96}
+                      height={96}
                       className="w-full h-full object-cover"
                     />
                   </div>

@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { 
   UserIcon, 
   ShoppingBagIcon, 
@@ -17,8 +18,8 @@ import {
 
 export function AccountPage() {
   const [activeTab, setActiveTab] = useState("profile");
-  const [user, setUser] = useState<any>(null);
-  const [orders, setOrders] = useState<any[]>([]);
+  const [user, setUser] = useState<Record<string, unknown> | null>(null);
+  const [orders, setOrders] = useState<Record<string, unknown>[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const { data: session, status } = useSession();
   const router = useRouter();
@@ -98,9 +99,11 @@ export function AccountPage() {
         <CardContent className="space-y-4">
           <div className="flex items-center space-x-4 mb-6">
             {user?.image ? (
-              <img
-                src={user.image}
-                alt={user.name}
+              <Image
+                src={user.image as string}
+                alt={user.name as string}
+                width={80}
+                height={80}
                 className="h-20 w-20 rounded-full object-cover"
               />
             ) : (

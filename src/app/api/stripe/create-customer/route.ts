@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
-    const { name, email } = await request.json()
+    const { name: _name, email: _email } = await request.json()
 
     // Mock customer for build purposes
     // In production, you'll create a real Stripe customer here
