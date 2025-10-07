@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Account {
@@ -57,6 +57,8 @@ model User {
   sessions Session[]
   orders   Order[]
   reviews  Review[]
+
+  @@map("users")
 }
 
 model VerificationToken {
@@ -65,6 +67,7 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+  @@map("verification_tokens")
 }
 
 model Product {
