@@ -8,6 +8,7 @@ import { HeartIcon } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartSolidIcon } from "@heroicons/react/24/solid";
 import { formatPrice } from "@/lib/utils";
 import { useCart } from "@/contexts/cart-context";
+import { Product } from "@/types";
 
 // Mock data for featured products
 const featuredProducts = [
@@ -116,12 +117,12 @@ export function FeaturedProducts() {
     if (isInWishlist(product.id as string)) {
       removeFromWishlist(product.id as string);
     } else {
-      addToWishlist(product);
+      addToWishlist(product as Product);
     }
   };
 
   const handleAddToCart = (product: Record<string, unknown>) => {
-    addToCart(product);
+    addToCart(product as Product);
   };
 
   return (
