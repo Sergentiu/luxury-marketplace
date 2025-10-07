@@ -19,10 +19,10 @@ const mockProduct = {
   condition: ProductCondition.EXCELLENT,
   description: "This iconic Chanel Classic Flap Bag features the signature quilted leather design with a gold chain strap. The bag is in excellent condition with minimal signs of wear, making it a perfect addition to any luxury collection.",
   images: [
-    "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    "https://picsum.photos/800/800?random=1",
+    "https://picsum.photos/800/800?random=2",
+    "https://picsum.photos/800/800?random=3",
+    "https://picsum.photos/800/800?random=4"
   ],
   authenticityGuaranteed: true,
   measurements: {

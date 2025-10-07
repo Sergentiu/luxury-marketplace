@@ -46,7 +46,7 @@ export function CategoryPage({ category, searchParams }: CategoryPageProps) {
         price: 8500,
         originalPrice: 10200,
         condition: ProductCondition.EXCELLENT,
-        image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        image: "https://picsum.photos/800/800?random=1",
         authenticityGuaranteed: true,
         createdAt: new Date("2024-01-15")
       },
@@ -58,7 +58,7 @@ export function CategoryPage({ category, searchParams }: CategoryPageProps) {
         price: 45000,
         originalPrice: 55000,
         condition: ProductCondition.LIKE_NEW,
-        image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        image: "https://picsum.photos/800/800?random=2",
         authenticityGuaranteed: true,
         createdAt: new Date("2024-01-10")
       },
@@ -70,7 +70,7 @@ export function CategoryPage({ category, searchParams }: CategoryPageProps) {
         price: 1800,
         originalPrice: 2200,
         condition: ProductCondition.VERY_GOOD,
-        image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        image: "https://picsum.photos/800/800?random=1",
         authenticityGuaranteed: true,
         createdAt: new Date("2024-01-08")
       },
@@ -82,7 +82,7 @@ export function CategoryPage({ category, searchParams }: CategoryPageProps) {
         price: 1200,
         originalPrice: 1500,
         condition: ProductCondition.EXCELLENT,
-        image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        image: "https://picsum.photos/800/800?random=2",
         authenticityGuaranteed: true,
         createdAt: new Date("2024-01-05")
       },
@@ -94,7 +94,7 @@ export function CategoryPage({ category, searchParams }: CategoryPageProps) {
         price: 2200,
         originalPrice: 2800,
         condition: ProductCondition.LIKE_NEW,
-        image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        image: "https://picsum.photos/800/800?random=1",
         authenticityGuaranteed: true,
         createdAt: new Date("2024-01-03")
       },
@@ -106,7 +106,7 @@ export function CategoryPage({ category, searchParams }: CategoryPageProps) {
         price: 4800,
         originalPrice: 5800,
         condition: ProductCondition.EXCELLENT,
-        image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        image: "https://picsum.photos/800/800?random=2",
         authenticityGuaranteed: true,
         createdAt: new Date("2024-01-01")
       }
