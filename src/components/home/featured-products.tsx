@@ -117,12 +117,12 @@ export function FeaturedProducts() {
     if (isInWishlist(product.id as string)) {
       removeFromWishlist(product.id as string);
     } else {
-      addToWishlist(product as Product);
+      addToWishlist(product as unknown as Product);
     }
   };
 
   const handleAddToCart = (product: Record<string, unknown>) => {
-    addToCart(product as Product);
+    addToCart(product as unknown as Product);
   };
 
   return (
