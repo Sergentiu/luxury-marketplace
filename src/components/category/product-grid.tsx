@@ -107,23 +107,23 @@ export function ProductGrid({ products, sortBy, onSortChange }: ProductGridProps
           : "space-y-4"
       }>
         {products.map((product) => (
-          <Card key={product.id} className="group product-card-hover cursor-pointer relative">
+          <Card key={product.id as string} className="group product-card-hover cursor-pointer relative">
             {/* Wishlist button */}
             <button
               onClick={(e) => {
                 e.preventDefault();
-                toggleWishlist(product.id);
+                toggleWishlist(product.id as string);
               }}
               className="absolute top-4 right-4 z-10 p-2 bg-white rounded-full shadow-md hover:shadow-lg transition-shadow"
             >
-              {wishlist.includes(product.id) ? (
+              {wishlist.includes(product.id as string) ? (
                 <HeartSolid className="h-5 w-5 text-red-500" />
               ) : (
                 <HeartIcon className="h-5 w-5 text-gray-600" />
               )}
             </button>
 
-            <Link href={`/product/${product.id}`}>
+            <Link href={`/product/${product.id as string}`}>
               <div className={viewMode === "grid" ? "aspect-square overflow-hidden rounded-t-lg" : "flex"}>
                 <Image
                   src={product.image as string}
@@ -140,22 +140,22 @@ export function ProductGrid({ products, sortBy, onSortChange }: ProductGridProps
                 <CardContent className={viewMode === "grid" ? "p-4" : "flex-1 p-4"}>
                   <div className="mb-2">
                     <span className="text-sm font-medium text-gray-500 uppercase tracking-wide">
-                      {product.brand}
+                      {product.brand as string}
                     </span>
                   </div>
                   
                   <h3 className={`font-semibold text-gray-900 mb-2 ${viewMode === "grid" ? "line-clamp-2 text-sm" : "text-base"}`}>
-                    {product.name}
+                    {product.name as string}
                   </h3>
                   
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center space-x-2">
                       <span className="text-lg font-bold text-gray-900">
-                        {formatPrice(product.price)}
+                        {formatPrice(product.price as number)}
                       </span>
                       {product.originalPrice && (
                         <span className="text-sm text-gray-500 line-through">
-                          {formatPrice(product.originalPrice)}
+                          {formatPrice(product.originalPrice as number)}
                         </span>
                       )}
                     </div>
@@ -163,7 +163,7 @@ export function ProductGrid({ products, sortBy, onSortChange }: ProductGridProps
                   
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
-                      {product.condition}
+                      {product.condition as string}
                     </span>
                     {product.authenticityGuaranteed && (
                       <div className="flex items-center">
