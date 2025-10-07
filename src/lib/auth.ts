@@ -4,6 +4,7 @@ import FacebookProvider from "next-auth/providers/facebook"
 import CredentialsProvider from "next-auth/providers/credentials"
 
 const handler = NextAuth({
+  secret: process.env.NEXTAUTH_SECRET || "fallback-secret-for-build",
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || "mock-client-id",

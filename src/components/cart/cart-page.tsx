@@ -12,10 +12,7 @@ export function CartPage() {
   const { state, updateQuantity, removeFromCart, getCartTotal } = useCart();
   const { items: cartItems } = state;
 
-  const subtotal = getCartTotal();
-  const shipping = subtotal > 500 ? 0 : 50;
-  const tax = subtotal * 0.08; // 8% tax
-  const total = subtotal + shipping + tax;
+  const cartTotal = getCartTotal();
 
   if (cartItems.length === 0) {
     return (
@@ -135,35 +132,35 @@ export function CartPage() {
                 
                 <div className="flex justify-between text-sm">
                   <span>Subtotal ({cartItems.length} items)</span>
-                  <span>{formatPrice(subtotal)}</span>
+                  <span>{formatPrice(cartTotal.subtotal)}</span>
                 </div>
                 
                 <div className="flex justify-between text-sm">
                   <span>Shipping</span>
                   <span>
-                    {shipping === 0 ? (
+                    {cartTotal.shipping === 0 ? (
                       <span className="text-green-600 font-medium">Free</span>
                     ) : (
-                      formatPrice(shipping)
+                      formatPrice(cartTotal.shipping)
                     )}
                   </span>
                 </div>
                 
                 <div className="flex justify-between text-sm">
                   <span>Tax</span>
-                  <span>{formatPrice(tax)}</span>
+                  <span>{formatPrice(cartTotal.tax)}</span>
                 </div>
                 
                 <div className="border-t pt-4">
                   <div className="flex justify-between text-lg font-bold">
                     <span>Total</span>
-                    <span>{formatPrice(total)}</span>
+                    <span>{formatPrice(cartTotal.total)}</span>
                   </div>
                 </div>
                 
-                {subtotal < 500 && (
+                {cartTotal.subtotal < 500 && (
                   <div className="text-sm text-blue-600 bg-blue-50 p-3 rounded-lg">
-                    Add {formatPrice(500 - subtotal)} more for free shipping!
+                    Add {formatPrice(500 - cartTotal.subtotal)} more for free shipping!
                   </div>
                 )}
                 

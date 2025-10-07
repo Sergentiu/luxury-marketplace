@@ -42,7 +42,7 @@ const CartContext = createContext<{
   removeFromWishlist: (id: string) => void;
   clearWishlist: () => void;
   isInWishlist: (productId: string) => boolean;
-  getCartTotal: () => number;
+  getCartTotal: () => { subtotal: number; shipping: number; tax: number; total: number };
   getCartItemCount: () => number;
   getWishlistCount: () => number;
 } | null>(null);
@@ -180,7 +180,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
   };
 
   const getCartTotal = () => {
-    return state.items.reduce((total, item) => total + (item.product.price * item.quantity), 0);
+    const subtotal = state.items.reduce((total, item) => total + (item.product.price * item.quantity), 0);
+    const shipping = subtotal > 500 ? 0 : 10;
+    const tax = subtotal * 0.08; // 8% tax
+    const total = subtotal + shipping + tax;
+    return { subtotal, shipping, tax, total };
   };
 
   const getCartItemCount = () => {
