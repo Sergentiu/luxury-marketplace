@@ -1,5 +1,6 @@
 import { ProductDetail } from "@/components/product/product-detail";
 import { notFound } from "next/navigation";
+import { ProductCategory, ProductCondition, ProductStatus } from "@/types";
 
 interface ProductPageProps {
   params: Promise<{
@@ -12,10 +13,10 @@ const mockProduct = {
   id: "1",
   name: "Chanel Classic Flap Bag Black Quilted Leather",
   brand: "Chanel",
-  category: "bags",
+  category: ProductCategory.BAGS,
   price: 8500,
   originalPrice: 10200,
-  condition: "Excellent",
+  condition: ProductCondition.EXCELLENT,
   description: "This iconic Chanel Classic Flap Bag features the signature quilted leather design with a gold chain strap. The bag is in excellent condition with minimal signs of wear, making it a perfect addition to any luxury collection.",
   images: [
     "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
@@ -34,7 +35,7 @@ const mockProduct = {
   material: "Quilted Leather",
   yearOfPurchase: 2021,
   sellerId: "seller-1",
-  status: "active" as const,
+  status: ProductStatus.ACTIVE,
   createdAt: new Date("2024-01-15"),
   updatedAt: new Date("2024-01-15"),
   tags: ["classic", "quilted", "gold hardware", "chain strap"],
