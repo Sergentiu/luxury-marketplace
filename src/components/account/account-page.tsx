@@ -198,24 +198,24 @@ export function AccountPage() {
           <div className="space-y-4">
             {orders.length > 0 ? (
               orders.map((order) => (
-                <div key={order.id} className="border border-gray-200 rounded-lg p-4">
+                <div key={order.id as string} className="border border-gray-200 rounded-lg p-4">
                   <div className="flex justify-between items-start mb-2">
                     <div>
-                      <h3 className="font-semibold text-gray-900">Order #{order.id}</h3>
-                      <p className="text-sm text-gray-600">Placed on {order.date}</p>
+                      <h3 className="font-semibold text-gray-900">Order #{order.id as string}</h3>
+                      <p className="text-sm text-gray-600">Placed on {order.date as string}</p>
                     </div>
                     <div className="text-right">
-                      <div className="font-semibold text-gray-900">${order.total.toLocaleString()}</div>
-                      <div className="text-sm text-gray-600">{order.items} item(s)</div>
+                      <div className="font-semibold text-gray-900">${(order.total as number).toLocaleString()}</div>
+                      <div className="text-sm text-gray-600">{order.items as number} item(s)</div>
                     </div>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                      order.status === "Delivered" 
+                      (order.status as string) === "Delivered" 
                         ? "bg-green-100 text-green-800" 
                         : "bg-blue-100 text-blue-800"
                     }`}>
-                      {order.status}
+                      {order.status as string}
                     </span>
                     <Button variant="outline" size="sm">View Details</Button>
                   </div>
