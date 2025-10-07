@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ProductCategory, ProductFilters, SortOption } from "@/types";
+import { ProductCategory, ProductCondition, ProductFilters, SortOption } from "@/types";
 import { CategoryFilters } from "./category-filters";
 import { ProductGrid } from "./product-grid";
 import { CategoryHeader } from "./category-header";
@@ -21,7 +21,7 @@ interface CategoryPageProps {
 export function CategoryPage({ category, searchParams }: CategoryPageProps) {
   const [filters, setFilters] = useState<ProductFilters>({
     brand: searchParams.brand ? [searchParams.brand] : [],
-    condition: searchParams.condition ? [searchParams.condition as string] : [],
+    condition: searchParams.condition ? [searchParams.condition as ProductCondition] : [],
     priceRange: searchParams.price_min && searchParams.price_max ? {
       min: parseInt(searchParams.price_min),
       max: parseInt(searchParams.price_max)
