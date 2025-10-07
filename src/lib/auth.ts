@@ -1,4 +1,4 @@
-import { NextAuthOptions } from "next-auth"
+import NextAuth, { NextAuthOptions } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import FacebookProvider from "next-auth/providers/facebook"
 import CredentialsProvider from "next-auth/providers/credentials"
@@ -51,3 +51,7 @@ export const authOptions: NextAuthOptions = {
     signUp: "/authentication",
   }
 }
+
+const handler = NextAuth(authOptions)
+
+export { handler as GET, handler as POST }
