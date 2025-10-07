@@ -113,8 +113,8 @@ export function FeaturedProducts() {
   const { addToWishlist, removeFromWishlist, isInWishlist, addToCart } = useCart();
 
   const toggleWishlist = (product: Record<string, unknown>) => {
-    if (isInWishlist(product.id)) {
-      removeFromWishlist(product.id);
+    if (isInWishlist(product.id as string)) {
+      removeFromWishlist(product.id as string);
     } else {
       addToWishlist(product);
     }
