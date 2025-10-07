@@ -3,7 +3,7 @@ import GoogleProvider from "next-auth/providers/google"
 import FacebookProvider from "next-auth/providers/facebook"
 import CredentialsProvider from "next-auth/providers/credentials"
 
-export const authOptions = {
+const handler = NextAuth({
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || "mock-client-id",
@@ -50,9 +50,7 @@ export const authOptions = {
     signIn: "/authentication",
     signUp: "/authentication",
   }
-}
+})
 
-const handler = NextAuth(authOptions)
-const auth = handler.auth
-
-export { handler as GET, handler as POST, auth }
+export const auth = handler.auth
+export { handler as GET, handler as POST }
