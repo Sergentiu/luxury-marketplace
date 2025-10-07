@@ -3,8 +3,7 @@ import GoogleProvider from "next-auth/providers/google"
 import FacebookProvider from "next-auth/providers/facebook"
 import CredentialsProvider from "next-auth/providers/credentials"
 
-const handler = NextAuth({
-  secret: process.env.NEXTAUTH_SECRET || "fallback-secret-for-build",
+export const authOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || "mock-client-id",
@@ -34,15 +33,17 @@ const handler = NextAuth({
     strategy: "jwt" as const
   },
   callbacks: {
-    async jwt({ token, user }: { token: Record<string, unknown>; user: Record<string, unknown> | undefined }) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    async jwt({ token, user }: any) {
       if (user) {
-        token.id = (user as Record<string, unknown>).id as string
+        token.id = user.id
       }
       return token
     },
-    async session({ session, token }: { session: Record<string, unknown>; token: Record<string, unknown> }) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    async session({ session, token }: any) {
       if (token) {
-        (session.user as Record<string, unknown>).id = token.id as string
+        session.user.id = token.id
       }
       return session
     }
@@ -51,7 +52,9 @@ const handler = NextAuth({
     signIn: "/authentication",
     signUp: "/authentication",
   }
-})
+}
 
-export const auth = handler.auth
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const handler = (NextAuth as any)(authOptions)
+
 export { handler as GET, handler as POST }
