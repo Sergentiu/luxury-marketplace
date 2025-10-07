@@ -33,13 +33,13 @@ export const authOptions = {
     strategy: "jwt" as const
   },
   callbacks: {
-    async jwt({ token, user }: { token: any; user: any }) {
+    async jwt({ token, user }: { token: Record<string, unknown>; user: Record<string, unknown> | undefined }) {
       if (user) {
         token.id = (user as Record<string, unknown>).id as string
       }
       return token
     },
-    async session({ session, token }: { session: any; token: any }) {
+    async session({ session, token }: { session: Record<string, unknown>; token: Record<string, unknown> }) {
       if (token) {
         (session.user as Record<string, unknown>).id = token.id as string
       }
