@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 export default function TestApiPage() {
-  const [products, setProducts] = useState<any[]>([]);
+  const [products, setProducts] = useState<Record<string, unknown>[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -48,13 +48,13 @@ export default function TestApiPage() {
             <p className="mb-4">Found {products.length} products:</p>
             <div className="space-y-4">
               {products.map((product) => (
-                <div key={product.id} className="bg-white p-4 rounded-lg shadow">
-                  <h3 className="font-bold">{product.name}</h3>
-                  <p>ID: {product.id}</p>
-                  <p>Brand: {product.brand}</p>
-                  <p>Price: ${product.price}</p>
-                  <p>Category: {product.category}</p>
-                  <p>Status: {product.status}</p>
+                <div key={product.id as string} className="bg-white p-4 rounded-lg shadow">
+                  <h3 className="font-bold">{product.name as string}</h3>
+                  <p>ID: {product.id as string}</p>
+                  <p>Brand: {product.brand as string}</p>
+                  <p>Price: ${product.price as number}</p>
+                  <p>Category: {product.category as string}</p>
+                  <p>Status: {product.status as string}</p>
                 </div>
               ))}
             </div>
