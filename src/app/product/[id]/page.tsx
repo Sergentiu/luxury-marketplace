@@ -1,5 +1,8 @@
 import { ProductDetail } from "@/components/product/product-detail";
 import { notFound } from "next/navigation";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 interface ProductPageProps {
   params: Promise<{
@@ -11,17 +14,26 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const { id } = await params;
   
   try {
-    const response = await fetch(`${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/api/products/${id}`, {
-      cache: 'no-store' // Ensure we get fresh data
+    const product = await prisma.product.findUnique({
+      where: {
+        id: id
+      }
     });
 
-    if (!response.ok) {
+    if (!product) {
       notFound();
     }
 
-    const product = await response.json();
+    // Parse JSON fields
+    const parsedProduct = {
+      ...product,
+      images: JSON.parse(product.images),
+      measurements: product.measurements ? JSON.parse(product.measurements) : null,
+      tags: product.tags ? JSON.parse(product.tags) : []
+    };
 
-    return <ProductDetail product={product} />;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return <ProductDetail product={parsedProduct as any} />;
   } catch (error) {
     console.error('Error fetching product:', error);
     notFound();
@@ -32,17 +44,20 @@ export async function generateMetadata({ params }: ProductPageProps) {
   const { id } = await params;
   
   try {
-    const response = await fetch(`${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/api/products/${id}`, {
-      cache: 'no-store'
+    const product = await prisma.product.findUnique({
+      where: {
+        id: id
+      }
     });
 
-    if (!response.ok) {
+    if (!product) {
       return {
         title: "Product Not Found",
       };
     }
 
-    const product = await response.json();
+    // Parse JSON fields for metadata
+    const parsedImages = JSON.parse(product.images);
 
     return {
       title: `${product.name} | ${product.brand} | Luxury Marketplace`,
@@ -50,7 +65,7 @@ export async function generateMetadata({ params }: ProductPageProps) {
       openGraph: {
         title: product.name,
         description: product.description,
-        images: product.images.slice(0, 1),
+        images: parsedImages.slice(0, 1),
       },
     };
   } catch {
