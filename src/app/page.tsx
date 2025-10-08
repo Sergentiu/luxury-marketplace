@@ -1,7 +1,7 @@
 import { HeroSection } from "@/components/home/hero-section";
 import { NewArrivalsSlider } from "@/components/home/new-arrivals-slider";
 import { BrandSection } from "@/components/home/brand-section";
-import { FeaturedProducts } from "@/components/home/featured-products";
+import { FeaturedProductsSimple as FeaturedProducts } from "@/components/home/featured-products-simple";
 import { ConsignmentCTA } from "@/components/home/consignment-cta";
 import { TrustBadges } from "@/components/home/trust-badges";
 
