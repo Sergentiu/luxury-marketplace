@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
     const products = await prisma.product.findMany({
       where: {
         ...whereClause,
-        status: "ACTIVE"
+        status: "active"
       },
       take: limit ? parseInt(limit) : undefined,
       orderBy: {

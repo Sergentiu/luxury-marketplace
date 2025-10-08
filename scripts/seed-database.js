@@ -11,10 +11,10 @@ async function main() {
       id: 'prod-1',
       name: 'Chanel Classic Flap Bag Black Quilted Leather',
       brand: 'Chanel',
-      category: 'BAGS',
+      category: 'bags',
       price: 8500,
       originalPrice: 10200,
-      condition: 'EXCELLENT',
+      condition: 'excellent',
       description: 'This iconic Chanel Classic Flap Bag features the signature quilted leather design with a gold chain strap. The bag is in excellent condition with minimal signs of wear.',
       images: JSON.stringify([
         'https://picsum.photos/800/800?random=1',
@@ -33,7 +33,7 @@ async function main() {
       material: 'Quilted Leather',
       yearOfPurchase: 2021,
       sellerId: 'seller-1',
-      status: 'ACTIVE',
+      status: 'active',
       tags: JSON.stringify(['classic', 'quilted', 'gold hardware', 'chain strap']),
       sku: 'CHAN-CF-BLK-001'
     },
@@ -41,10 +41,10 @@ async function main() {
       id: 'prod-2',
       name: 'Hermès Birkin 35 Togo Leather',
       brand: 'Hermès',
-      category: 'BAGS',
+      category: 'bags',
       price: 45000,
       originalPrice: 55000,
-      condition: 'LIKE_NEW',
+      condition: 'like_new',
       description: 'The legendary Hermès Birkin 35 in Togo leather. This timeless piece is in like-new condition and comes with authenticity guarantee.',
       images: JSON.stringify([
         'https://picsum.photos/800/800?random=5',
@@ -63,7 +63,7 @@ async function main() {
       material: 'Togo Leather',
       yearOfPurchase: 2022,
       sellerId: 'seller-2',
-      status: 'ACTIVE',
+      status: 'active',
       tags: JSON.stringify(['birkin', 'togo', 'gold hardware', 'luxury']),
       sku: 'HERM-BIR-35-GLD'
     },
@@ -71,10 +71,10 @@ async function main() {
       id: 'prod-3',
       name: 'Louis Vuitton Neverfull MM Monogram',
       brand: 'Louis Vuitton',
-      category: 'BAGS',
+      category: 'bags',
       price: 1800,
       originalPrice: 2200,
-      condition: 'VERY_GOOD',
+      condition: 'very_good',
       description: 'Classic Louis Vuitton Neverfull MM in monogram canvas. Perfect for everyday use with minimal signs of wear.',
       images: JSON.stringify([
         'https://picsum.photos/800/800?random=9',
@@ -93,7 +93,7 @@ async function main() {
       material: 'Canvas',
       yearOfPurchase: 2020,
       sellerId: 'seller-3',
-      status: 'ACTIVE',
+      status: 'active',
       tags: JSON.stringify(['neverfull', 'monogram', 'canvas', 'tote']),
       sku: 'LV-NEV-MM-MON'
     },
@@ -101,10 +101,10 @@ async function main() {
       id: 'prod-4',
       name: 'Gucci GG Marmont Shoulder Bag',
       brand: 'Gucci',
-      category: 'BAGS',
+      category: 'bags',
       price: 1200,
       originalPrice: 1500,
-      condition: 'EXCELLENT',
+      condition: 'excellent',
       description: 'Elegant Gucci GG Marmont shoulder bag in black leather with signature GG hardware.',
       images: JSON.stringify([
         'https://picsum.photos/800/800?random=13',
@@ -123,7 +123,7 @@ async function main() {
       material: 'Leather',
       yearOfPurchase: 2023,
       sellerId: 'seller-4',
-      status: 'ACTIVE',
+      status: 'active',
       tags: JSON.stringify(['marmont', 'gg', 'shoulder', 'leather']),
       sku: 'GUCC-GG-MAR-BLK'
     }
