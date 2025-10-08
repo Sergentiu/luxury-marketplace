@@ -22,8 +22,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
     const product = await response.json();
 
     return <ProductDetail product={product} />;
-  } catch (err) {
-    console.error('Error fetching product:', err);
+  } catch (error) {
+    console.error('Error fetching product:', error);
     notFound();
   }
 }
@@ -53,7 +53,7 @@ export async function generateMetadata({ params }: ProductPageProps) {
         images: product.images.slice(0, 1),
       },
     };
-  } catch (err) {
+  } catch {
     return {
       title: "Product Not Found",
     };

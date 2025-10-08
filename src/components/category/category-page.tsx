@@ -90,11 +90,23 @@ export function CategoryPage({ category, searchParams }: CategoryPageProps) {
           
           {/* Products Grid */}
           <div className="lg:w-3/4">
-            <ProductGrid 
-              products={sortedProducts as Record<string, unknown>[]} 
-              sortBy={sortBy}
-              onSortChange={() => {}} // Empty function since we don't need sorting here
-            />
+            {loading ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[...Array(6)].map((_, i) => (
+                  <div key={i} className="animate-pulse">
+                    <div className="bg-gray-300 rounded-lg h-64 mb-4"></div>
+                    <div className="bg-gray-300 rounded h-4 mb-2"></div>
+                    <div className="bg-gray-300 rounded h-4 w-3/4"></div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <ProductGrid 
+                products={sortedProducts as unknown as Record<string, unknown>[]} 
+                sortBy={sortBy}
+                onSortChange={() => {}} // Empty function since we don't need sorting here
+              />
+            )}
           </div>
         </div>
       </div>
