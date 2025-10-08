@@ -17,10 +17,10 @@ async function main() {
       condition: 'excellent',
       description: 'This iconic Chanel Classic Flap Bag features the signature quilted leather design with a gold chain strap. The bag is in excellent condition with minimal signs of wear.',
       images: JSON.stringify([
-        'https://picsum.photos/800/800?random=1',
-        'https://picsum.photos/800/800?random=2',
-        'https://picsum.photos/800/800?random=3',
-        'https://picsum.photos/800/800?random=4'
+        'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&h=800&fit=crop',
+        'https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=800&h=800&fit=crop',
+        'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=800&h=800&fit=crop',
+        'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&h=800&fit=crop'
       ]),
       authenticityGuaranteed: true,
       measurements: JSON.stringify({
@@ -47,10 +47,10 @@ async function main() {
       condition: 'like_new',
       description: 'The legendary Hermès Birkin 35 in Togo leather. This timeless piece is in like-new condition and comes with authenticity guarantee.',
       images: JSON.stringify([
-        'https://picsum.photos/800/800?random=5',
-        'https://picsum.photos/800/800?random=6',
-        'https://picsum.photos/800/800?random=7',
-        'https://picsum.photos/800/800?random=8'
+        'https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=800&h=800&fit=crop',
+        'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=800&h=800&fit=crop',
+        'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&h=800&fit=crop',
+        'https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=800&h=800&fit=crop'
       ]),
       authenticityGuaranteed: true,
       measurements: JSON.stringify({
@@ -77,10 +77,10 @@ async function main() {
       condition: 'very_good',
       description: 'Classic Louis Vuitton Neverfull MM in monogram canvas. Perfect for everyday use with minimal signs of wear.',
       images: JSON.stringify([
-        'https://picsum.photos/800/800?random=9',
-        'https://picsum.photos/800/800?random=10',
-        'https://picsum.photos/800/800?random=11',
-        'https://picsum.photos/800/800?random=12'
+        'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=800&h=800&fit=crop',
+        'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&h=800&fit=crop',
+        'https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=800&h=800&fit=crop',
+        'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=800&h=800&fit=crop'
       ]),
       authenticityGuaranteed: true,
       measurements: JSON.stringify({
@@ -107,10 +107,10 @@ async function main() {
       condition: 'excellent',
       description: 'Elegant Gucci GG Marmont shoulder bag in black leather with signature GG hardware.',
       images: JSON.stringify([
-        'https://picsum.photos/800/800?random=13',
-        'https://picsum.photos/800/800?random=14',
-        'https://picsum.photos/800/800?random=15',
-        'https://picsum.photos/800/800?random=16'
+        'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&h=800&fit=crop',
+        'https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=800&h=800&fit=crop',
+        'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=800&h=800&fit=crop',
+        'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&h=800&fit=crop'
       ]),
       authenticityGuaranteed: true,
       measurements: JSON.stringify({

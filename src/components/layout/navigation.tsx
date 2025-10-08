@@ -223,7 +223,7 @@ export function Navigation() {
               {brands.map((brand) => (
                 <Link
                   key={brand}
-                  href={`/brand/${brand.toLowerCase().replace(/\s+/g, '-')}`}
+                  href={`/category/bags?brand=${encodeURIComponent(brand)}`}
                   className="whitespace-nowrap hover:text-gray-900 transition-colors"
                 >
                   {brand}

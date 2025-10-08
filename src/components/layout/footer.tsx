@@ -28,22 +28,22 @@ const footerSections = [
     title: "Services",
     links: [
       { name: "Sell with Us", href: "/sell" },
-      { name: "Consignment", href: "/consignment" },
+      { name: "Consignment", href: "#" },
       { name: "Authentication", href: "/authentication" },
-      { name: "Care Guide", href: "/care-guide" },
-      { name: "Size Guide", href: "/size-guide" },
-      { name: "Personal Shopper", href: "/personal-shopper" },
+      { name: "Care Guide", href: "#" },
+      { name: "Size Guide", href: "#" },
+      { name: "Personal Shopper", href: "#" },
     ],
   },
   {
     title: "Support",
     links: [
-      { name: "Contact Us", href: "/contact" },
-      { name: "FAQ", href: "/faq" },
-      { name: "Shipping Info", href: "/shipping" },
-      { name: "Returns", href: "/returns" },
-      { name: "Track Order", href: "/track-order" },
-      { name: "Live Chat", href: "/chat" },
+      { name: "Contact Us", href: "#" },
+      { name: "FAQ", href: "#" },
+      { name: "Shipping Info", href: "#" },
+      { name: "Returns", href: "#" },
+      { name: "Track Order", href: "#" },
+      { name: "Live Chat", href: "#" },
     ],
   },
   {
@@ -51,10 +51,10 @@ const footerSections = [
     links: [
       { name: "About Us", href: "/about" },
       { name: "Blog", href: "/blog" },
-      { name: "Careers", href: "/careers" },
-      { name: "Press", href: "/press" },
-      { name: "Partnerships", href: "/partnerships" },
-      { name: "Sustainability", href: "/sustainability" },
+      { name: "Careers", href: "#" },
+      { name: "Press", href: "#" },
+      { name: "Partnerships", href: "#" },
+      { name: "Sustainability", href: "#" },
     ],
   },
 ];
@@ -62,8 +62,8 @@ const footerSections = [
 const legalLinks = [
   { name: "Terms of Service", href: "/terms" },
   { name: "Privacy Policy", href: "/privacy" },
-  { name: "Cookie Policy", href: "/cookies" },
-  { name: "Accessibility", href: "/accessibility" },
+  { name: "Cookie Policy", href: "#" },
+  { name: "Accessibility", href: "#" },
 ];
 
 export function Footer() {
