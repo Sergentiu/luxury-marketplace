@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { ProductCategory, ProductCondition, ProductFilters, SortOption, Product } from "@/types";
+import { useState } from "react";
+import { ProductCategory, ProductCondition, ProductFilters, SortOption } from "@/types";
 import { CategoryFilters } from "./category-filters";
 import { ProductGrid } from "./product-grid";
 import { CategoryHeader } from "./category-header";
@@ -73,13 +73,6 @@ export function CategoryPage({ category, searchParams }: CategoryPageProps) {
     setFilters(newFilters);
   };
 
-  const handleSortChange = (newSort: SortOption) => {
-    setSortBy(newSort);
-  };
-
-  const availableBrands = Array.from(new Set(fetchedProducts.map(p => p.brand)));
-  const availableConditions = Array.from(new Set(fetchedProducts.map(p => p.condition)));
-
   return (
     <div className="min-h-screen bg-gray-50">
       <CategoryHeader category={category} productCount={sortedProducts.length} />
@@ -90,11 +83,8 @@ export function CategoryPage({ category, searchParams }: CategoryPageProps) {
           <div className="lg:w-1/4">
             <CategoryFilters
               filters={filters}
-              onFiltersChange={handleFiltersChange}
-              availableBrands={availableBrands}
-              availableConditions={availableConditions}
-              sortBy={sortBy}
-              onSortChange={handleSortChange}
+              onFilterChange={handleFiltersChange}
+              category={category}
             />
           </div>
           
