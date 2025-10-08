@@ -22,11 +22,11 @@ export function WishlistPage() {
             <p className="text-gray-600 mb-8">
               Start adding items you love to your wishlist.
             </p>
-            <Button asChild size="lg">
-              <Link href="/category/bags">
+            <Link href="/category/bags">
+              <Button size="lg">
                 Start Shopping
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
@@ -135,16 +135,16 @@ export function WishlistPage() {
               </p>
             </div>
             <div className="flex space-x-4">
-              <Button asChild variant="outline">
-                <Link href="/category/bags">
+              <Link href="/category/bags">
+                <Button variant="outline">
                   Continue Shopping
-                </Link>
-              </Button>
-              <Button asChild>
-                <Link href="/cart">
+                </Button>
+              </Link>
+              <Link href="/cart">
+                <Button>
                   View Cart
-                </Link>
-              </Button>
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

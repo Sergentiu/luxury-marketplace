@@ -174,11 +174,11 @@ export function BlogPage() {
                       <UserIcon className="h-4 w-4 mr-2" />
                       {blogPosts[0].author}
                     </div>
-                    <Button asChild>
-                      <Link href={`/blog/${blogPosts[0].slug}`}>
+                    <Link href={`/blog/${blogPosts[0].slug}`}>
+                      <Button>
                         Read More
-                      </Link>
-                    </Button>
+                      </Button>
+                    </Link>
                   </div>
                 </CardContent>
               </div>

@@ -234,16 +234,16 @@ export function AboutPage() {
             Join thousands of satisfied customers who trust us with their luxury purchases
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-white text-primary hover:bg-gray-100">
-              <Link href="/category/bags">
+            <Link href="/category/bags">
+              <Button size="lg" className="bg-white text-primary hover:bg-gray-100">
                 Start Shopping
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary">
-              <Link href="/sell">
+              </Button>
+            </Link>
+            <Link href="/sell">
+              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary">
                 Sell Your Items
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

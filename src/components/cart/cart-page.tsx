@@ -24,11 +24,11 @@ export function CartPage() {
             <p className="text-gray-600 mb-8">
               Discover our collection of authentic luxury items.
             </p>
-            <Button asChild size="lg">
-              <Link href="/category/bags">
+            <Link href="/category/bags">
+              <Button size="lg">
                 Start Shopping
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
@@ -164,17 +164,17 @@ export function CartPage() {
                   </div>
                 )}
                 
-                <Button asChild className="w-full" size="lg">
-                  <Link href="/checkout">
+                <Link href="/checkout">
+                  <Button className="w-full" size="lg">
                     Proceed to Checkout
-                  </Link>
-                </Button>
+                  </Button>
+                </Link>
                 
-                <Button asChild variant="outline" className="w-full">
-                  <Link href="/category/bags">
+                <Link href="/category/bags">
+                  <Button variant="outline" className="w-full">
                     Continue Shopping
-                  </Link>
-                </Button>
+                  </Button>
+                </Link>
                 
                 <div className="pt-4 border-t">
                   <div className="flex items-center space-x-2 text-sm text-gray-600">

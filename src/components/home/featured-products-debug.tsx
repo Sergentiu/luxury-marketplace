@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+// Debug component - no additional React hooks needed
 import { useProducts } from "@/hooks/use-products";
 
 export function FeaturedProductsDebug() {
