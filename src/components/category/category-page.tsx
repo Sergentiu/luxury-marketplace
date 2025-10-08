@@ -29,7 +29,7 @@ export function CategoryPage({ category, searchParams }: CategoryPageProps) {
     } : undefined,
   });
 
-  const [sortBy, setSortBy] = useState<SortOption>(
+  const [sortBy] = useState<SortOption>(
     searchParams.sort as SortOption || SortOption.NEWEST
   );
 
@@ -91,8 +91,9 @@ export function CategoryPage({ category, searchParams }: CategoryPageProps) {
           {/* Products Grid */}
           <div className="lg:w-3/4">
             <ProductGrid 
-              products={sortedProducts} 
-              loading={loading}
+              products={sortedProducts as Record<string, unknown>[]} 
+              sortBy={sortBy}
+              onSortChange={() => {}} // Empty function since we don't need sorting here
             />
           </div>
         </div>
