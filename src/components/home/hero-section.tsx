@@ -28,18 +28,18 @@ export function HeroSection() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild size="lg" className="text-lg px-8 py-4 bg-white text-black hover:bg-gray-100">
-                <Link href="/category/bags">
+              <Link href="/category/bags">
+                <Button size="lg" className="text-lg px-8 py-4 bg-white text-black hover:bg-gray-100">
                   Shop Now
                   <ArrowRightIcon className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
+                </Button>
+              </Link>
               
-              <Button asChild variant="outline" size="lg" className="text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-black">
-                <Link href="/sell">
+              <Link href="/sell">
+                <Button variant="outline" size="lg" className="text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-black">
                   Sell with Us
-                </Link>
-              </Button>
+                </Button>
+              </Link>
             </div>
             
             <div className="mt-12 flex items-center space-x-8 text-sm text-gray-400">

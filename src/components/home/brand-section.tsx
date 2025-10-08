@@ -5,44 +5,44 @@ import { Button } from "@/components/ui/button";
 const featuredBrands = [
   {
     name: "Chanel",
-    logo: "https://logos-world.net/wp-content/uploads/2020/04/Chanel-Logo.png",
+    logo: null, // Using text instead of broken image
     description: "Timeless elegance and sophistication",
-    href: "/brand/chanel",
+    href: "/category/bags?brand=Chanel",
     color: "bg-black"
   },
   {
     name: "Hermès",
-    logo: "https://logos-world.net/wp-content/uploads/2020/09/Hermes-Logo.png",
+    logo: null,
     description: "Artisan craftsmanship at its finest",
-    href: "/brand/hermes",
+    href: "/category/bags?brand=Hermès",
     color: "bg-orange-500"
   },
   {
     name: "Louis Vuitton",
-    logo: "https://logos-world.net/wp-content/uploads/2020/09/Louis-Vuitton-Logo.png",
+    logo: null,
     description: "Luxury travel and lifestyle",
-    href: "/brand/louis-vuitton",
+    href: "/category/bags?brand=Louis%20Vuitton",
     color: "bg-amber-500"
   },
   {
     name: "Gucci",
-    logo: "https://logos-world.net/wp-content/uploads/2020/09/Gucci-Logo.png",
+    logo: null,
     description: "Bold Italian luxury and style",
-    href: "/brand/gucci",
+    href: "/category/bags?brand=Gucci",
     color: "bg-green-600"
   },
   {
     name: "Prada",
-    logo: "https://logos-world.net/wp-content/uploads/2020/09/Prada-Logo.png",
+    logo: null,
     description: "Minimalist luxury and innovation",
-    href: "/brand/prada",
+    href: "/category/bags?brand=Prada",
     color: "bg-blue-900"
   },
   {
     name: "Dior",
-    logo: "https://logos-world.net/wp-content/uploads/2020/09/Dior-Logo.png",
+    logo: null,
     description: "French elegance and femininity",
-    href: "/brand/dior",
+    href: "/category/bags?brand=Dior",
     color: "bg-pink-500"
   }
 ];
@@ -69,13 +69,17 @@ export function BrandSection() {
                   {/* Brand header */}
                   <div className={`${brand.color} p-6 text-center`}>
                     <div className="w-24 h-24 mx-auto mb-4 bg-white rounded-full flex items-center justify-center">
-                      <Image
-                        src={brand.logo}
-                        alt={`${brand.name} logo`}
-                        width={64}
-                        height={64}
-                        className="w-16 h-16 object-contain"
-                      />
+                      {brand.logo ? (
+                        <Image
+                          src={brand.logo}
+                          alt={`${brand.name} logo`}
+                          width={64}
+                          height={64}
+                          className="w-16 h-16 object-contain"
+                        />
+                      ) : (
+                        <span className="text-2xl font-bold text-gray-800">{brand.name.charAt(0)}</span>
+                      )}
                     </div>
                     <h3 className="text-xl font-bold text-white">{brand.name}</h3>
                   </div>
@@ -107,11 +111,11 @@ export function BrandSection() {
         </div>
 
         <div className="text-center mt-12">
-          <Button asChild variant="outline" size="lg">
-            <Link href="/brands">
+          <Link href="/brands">
+            <Button variant="outline" size="lg">
               View All Brands
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

@@ -59,18 +59,18 @@ export function ConsignmentCTA() {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild size="lg" className="bg-white text-black hover:bg-gray-100">
-                <Link href="/sell">
+              <Link href="/sell">
+                <Button size="lg" className="bg-white text-black hover:bg-gray-100">
                   Start Selling
                   <ArrowRightIcon className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
+                </Button>
+              </Link>
               
-              <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-black">
-                <Link href="/consignment">
+              <Link href="/consignment">
+                <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-black">
                   Learn More
-                </Link>
-              </Button>
+                </Button>
+              </Link>
             </div>
           </div>
           

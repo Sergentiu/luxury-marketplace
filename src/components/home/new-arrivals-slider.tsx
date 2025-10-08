@@ -7,74 +7,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { formatPrice } from "@/lib/utils";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
-
-// Mock data for new arrivals
-const newArrivals = [
-  {
-    id: "1",
-    name: "Chanel Classic Flap Bag",
-    brand: "Chanel",
-    price: 8500,
-    originalPrice: 10200,
-    image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    condition: "Excellent",
-    category: "Bags"
-  },
-  {
-    id: "2",
-    name: "Hermès Birkin 35",
-    brand: "Hermès",
-    price: 45000,
-    originalPrice: 55000,
-    image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    condition: "Like New",
-    category: "Bags"
-  },
-  {
-    id: "3",
-    name: "Louis Vuitton Neverfull MM",
-    brand: "Louis Vuitton",
-    price: 1800,
-    originalPrice: 2200,
-    image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    condition: "Very Good",
-    category: "Bags"
-  },
-  {
-    id: "4",
-    name: "Gucci GG Marmont Shoulder Bag",
-    brand: "Gucci",
-    price: 1200,
-    originalPrice: 1500,
-    image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    condition: "Excellent",
-    category: "Bags"
-  },
-  {
-    id: "5",
-    name: "Prada Saffiano Leather Tote",
-    brand: "Prada",
-    price: 2200,
-    originalPrice: 2800,
-    image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    condition: "Like New",
-    category: "Bags"
-  },
-  {
-    id: "6",
-    name: "Dior Lady Dior Bag",
-    brand: "Dior",
-    price: 4800,
-    originalPrice: 5800,
-    image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    condition: "Excellent",
-    category: "Bags"
-  }
-];
+import { useProducts } from "@/hooks/use-products";
 
 export function NewArrivalsSlider() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsPerView = 4;
+  const { products: newArrivals, loading, error } = useProducts({ limit: 8 });
+  
   const maxIndex = Math.max(0, newArrivals.length - itemsPerView);
 
   const nextSlide = () => {
@@ -86,6 +25,47 @@ export function NewArrivalsSlider() {
   };
 
   const visibleItems = newArrivals.slice(currentIndex, currentIndex + itemsPerView);
+
+  if (loading) {
+    return (
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Just In
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Loading our latest arrivals...
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="animate-pulse">
+                <div className="bg-gray-300 rounded-lg h-64 mb-4"></div>
+                <div className="bg-gray-300 rounded h-4 mb-2"></div>
+                <div className="bg-gray-300 rounded h-4 w-3/4"></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Just In
+            </h2>
+            <p className="text-red-600">Error loading new arrivals: {error}</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-16 bg-white">
@@ -116,7 +96,7 @@ export function NewArrivalsSlider() {
             <Card key={item.id} className="group product-card-hover cursor-pointer">
               <div className="aspect-square overflow-hidden rounded-t-lg">
                 <Image
-                  src={item.image}
+                  src={item.images[0] || "https://picsum.photos/400/400"}
                   alt={item.name}
                   width={300}
                   height={300}
@@ -147,22 +127,22 @@ export function NewArrivalsSlider() {
                     {item.condition}
                   </span>
                 </div>
-                <Button asChild className="w-full">
-                  <Link href={`/product/${item.id}`}>
+                <Link href={`/product/${item.id}`}>
+                  <Button className="w-full">
                     View Details
-                  </Link>
-                </Button>
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           ))}
         </div>
 
         <div className="text-center mt-12">
-          <Button asChild variant="outline" size="lg">
-            <Link href="/category/bags">
+          <Link href="/category/bags">
+            <Button variant="outline" size="lg">
               View All New Arrivals
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

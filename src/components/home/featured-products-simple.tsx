@@ -107,11 +107,11 @@ export function FeaturedProductsSimple() {
                     )}
                   </div>
                   
-                  <Button asChild className="w-full" size="sm">
-                    <Link href={`/product/${product.id}`}>
+                  <Link href={`/product/${product.id}`}>
+                    <Button className="w-full" size="sm">
                       View Details
-                    </Link>
-                  </Button>
+                    </Button>
+                  </Link>
                 </div>
               </CardContent>
             </Card>
