@@ -9,181 +9,123 @@ import { HeartIcon as HeartSolidIcon } from "@heroicons/react/24/solid";
 import { formatPrice } from "@/lib/utils";
 import { useCart } from "@/contexts/cart-context";
 import { Product } from "@/types";
-
-// Mock data for featured products
-const featuredProducts = [
-  {
-    id: "1",
-    name: "Chanel Classic Flap Bag Black Quilted Leather",
-    brand: "Chanel",
-    price: 8500,
-    originalPrice: 10200,
-    image: "https://picsum.photos/800/800?random=1",
-    condition: "Excellent",
-    category: "Bags",
-    authenticityGuaranteed: true,
-    yearOfPurchase: 2021
-  },
-  {
-    id: "2",
-    name: "Hermès Birkin 35 Togo Leather",
-    brand: "Hermès",
-    price: 45000,
-    originalPrice: 55000,
-    image: "https://picsum.photos/800/800?random=2",
-    condition: "Like New",
-    category: "Bags",
-    authenticityGuaranteed: true,
-    yearOfPurchase: 2022
-  },
-  {
-    id: "3",
-    name: "Louis Vuitton Neverfull MM Monogram Canvas",
-    brand: "Louis Vuitton",
-    price: 1800,
-    originalPrice: 2200,
-    image: "https://picsum.photos/800/800?random=1",
-    condition: "Very Good",
-    category: "Bags",
-    authenticityGuaranteed: true,
-    yearOfPurchase: 2020
-  },
-  {
-    id: "4",
-    name: "Gucci GG Marmont Shoulder Bag Black",
-    brand: "Gucci",
-    price: 1200,
-    originalPrice: 1500,
-    image: "https://picsum.photos/800/800?random=2",
-    condition: "Excellent",
-    category: "Bags",
-    authenticityGuaranteed: true,
-    yearOfPurchase: 2023
-  },
-  {
-    id: "5",
-    name: "Prada Saffiano Leather Tote Bag",
-    brand: "Prada",
-    price: 2200,
-    originalPrice: 2800,
-    image: "https://picsum.photos/800/800?random=1",
-    condition: "Like New",
-    category: "Bags",
-    authenticityGuaranteed: true,
-    yearOfPurchase: 2021
-  },
-  {
-    id: "6",
-    name: "Dior Lady Dior Bag Black Cannage",
-    brand: "Dior",
-    price: 4800,
-    originalPrice: 5800,
-    image: "https://picsum.photos/800/800?random=2",
-    condition: "Excellent",
-    category: "Bags",
-    authenticityGuaranteed: true,
-    yearOfPurchase: 2022
-  },
-  {
-    id: "7",
-    name: "Saint Laurent Sac de Jour Tote",
-    brand: "Saint Laurent",
-    price: 3200,
-    originalPrice: 3800,
-    image: "https://picsum.photos/800/800?random=1",
-    condition: "Very Good",
-    category: "Bags",
-    authenticityGuaranteed: true,
-    yearOfPurchase: 2020
-  },
-  {
-    id: "8",
-    name: "Balenciaga City Bag Black Leather",
-    brand: "Balenciaga",
-    price: 1800,
-    originalPrice: 2200,
-    image: "https://picsum.photos/800/800?random=2",
-    condition: "Excellent",
-    category: "Bags",
-    authenticityGuaranteed: true,
-    yearOfPurchase: 2023
-  }
-];
+import { useProducts } from "@/hooks/use-products";
 
 export function FeaturedProducts() {
+  const { products, loading, error } = useProducts({ limit: 4 });
   const { addToWishlist, removeFromWishlist, isInWishlist, addToCart } = useCart();
 
-  const toggleWishlist = (product: Record<string, unknown>) => {
-    if (isInWishlist(product.id as string)) {
-      removeFromWishlist(product.id as string);
+  const toggleWishlist = (product: Product) => {
+    if (isInWishlist(product.id)) {
+      removeFromWishlist(product.id);
     } else {
-      addToWishlist(product as unknown as Product);
+      addToWishlist(product);
     }
   };
 
-  const handleAddToCart = (product: Record<string, unknown>) => {
-    addToCart(product as unknown as Product);
+  const handleAddToCart = (product: Product) => {
+    addToCart(product);
   };
+
+  if (loading) {
+    return (
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Featured Products
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Discover our curated selection of authentic luxury pre-owned designer items
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="animate-pulse">
+                <div className="bg-gray-300 rounded-lg h-64 mb-4"></div>
+                <div className="bg-gray-300 rounded h-4 mb-2"></div>
+                <div className="bg-gray-300 rounded h-4 w-3/4"></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Featured Products
+            </h2>
+            <p className="text-red-600">Error loading products: {error}</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">
             Featured Products
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Handpicked luxury items that represent the best of our collection. 
-            Each piece is authenticated and comes with our comprehensive guarantee.
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Discover our curated selection of authentic luxury pre-owned designer items
           </p>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {featuredProducts.map((product) => (
-            <Card key={product.id} className="group product-card-hover cursor-pointer relative">
-              {/* Wishlist button */}
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                toggleWishlist(product);
-              }}
-              className="absolute top-4 right-4 z-10 p-2 bg-white rounded-full shadow-md hover:shadow-lg transition-shadow"
-            >
-              {isInWishlist(product.id) ? (
-                <HeartSolidIcon className="h-5 w-5 text-red-500" />
-              ) : (
-                <HeartIcon className="h-5 w-5 text-gray-600" />
-              )}
-            </button>
-
-              <Link href={`/product/${product.id}`}>
-                <div className="aspect-square overflow-hidden rounded-t-lg">
-                  <Image
-                    src={product.image as string}
-                    alt={product.name as string}
-                    width={300}
-                    height={300}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {products.map((product) => (
+            <Card key={product.id} className="group hover:shadow-lg transition-shadow duration-300">
+              <CardContent className="p-0">
+                <div className="relative">
+                  <Link href={`/product/${product.id}`}>
+                    <div className="aspect-square relative overflow-hidden rounded-t-lg">
+                      <Image
+                        src={product.images[0] || "https://picsum.photos/400/400"}
+                        alt={product.name}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                      />
+                    </div>
+                  </Link>
+                  
+                  <button
+                    onClick={() => toggleWishlist(product)}
+                    className="absolute top-3 right-3 p-2 bg-white rounded-full shadow-md hover:shadow-lg transition-shadow"
+                  >
+                    {isInWishlist(product.id) ? (
+                      <HeartSolidIcon className="w-5 h-5 text-red-500" />
+                    ) : (
+                      <HeartIcon className="w-5 h-5 text-gray-600" />
+                    )}
+                  </button>
                 </div>
                 
-                <CardContent className="p-4">
+                <div className="p-4">
                   <div className="mb-2">
-                    <span className="text-sm font-medium text-gray-500 uppercase tracking-wide">
-                      {product.brand}
-                    </span>
+                    <span className="text-sm font-medium text-gray-500">{product.brand}</span>
                   </div>
                   
-                  <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 text-sm">
-                    {product.name}
-                  </h3>
+                  <Link href={`/product/${product.id}`}>
+                    <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors">
+                      {product.name}
+                    </h3>
+                  </Link>
                   
-                  <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center space-x-2">
                       <span className="text-lg font-bold text-gray-900">
                         {formatPrice(product.price)}
                       </span>
-                      {product.originalPrice && (
+                      {product.originalPrice && product.originalPrice > product.price && (
                         <span className="text-sm text-gray-500 line-through">
                           {formatPrice(product.originalPrice)}
                         </span>
@@ -191,46 +133,34 @@ export function FeaturedProducts() {
                     </div>
                   </div>
                   
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
-                      {product.condition}
-                    </span>
-                    <span className="text-xs text-gray-500">
-                      {product.yearOfPurchase}
-                    </span>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-sm text-gray-600">{product.condition}</span>
+                    {product.authenticityGuaranteed && (
+                      <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
+                        Authentic
+                      </span>
+                    )}
                   </div>
                   
-                  {product.authenticityGuaranteed && (
-                    <div className="flex items-center mb-3">
-                      <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-                      <span className="text-xs text-green-700 font-medium">
-                        Authenticity Guaranteed
-                      </span>
-                    </div>
-                  )}
-                  
                   <Button 
-                    className="w-full" 
+                    onClick={() => handleAddToCart(product)}
+                    className="w-full"
                     size="sm"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleAddToCart(product);
-                    }}
                   >
                     Add to Cart
                   </Button>
-                </CardContent>
-              </Link>
+                </div>
+              </CardContent>
             </Card>
           ))}
         </div>
-
+        
         <div className="text-center mt-12">
-          <Button asChild variant="outline" size="lg">
-            <Link href="/products">
+          <Link href="/category/bags">
+            <Button variant="outline" size="lg">
               View All Products
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

@@ -1,10 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ProductCategory, ProductCondition, ProductFilters, SortOption } from "@/types";
+import { ProductCategory, ProductCondition, ProductFilters, SortOption, Product } from "@/types";
 import { CategoryFilters } from "./category-filters";
 import { ProductGrid } from "./product-grid";
 import { CategoryHeader } from "./category-header";
+import { useProducts } from "@/hooks/use-products";
 
 interface CategoryPageProps {
   category: ProductCategory;
@@ -29,128 +30,46 @@ export function CategoryPage({ category, searchParams }: CategoryPageProps) {
   });
 
   const [sortBy, setSortBy] = useState<SortOption>(
-    (searchParams.sort as SortOption) || SortOption.NEWEST
+    searchParams.sort as SortOption || SortOption.NEWEST
   );
 
-  const [products, setProducts] = useState<Record<string, unknown>[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { products: fetchedProducts, loading } = useProducts({ category });
 
-  // Mock data for demonstration
-  useEffect(() => {
-    const mockProducts = [
-      {
-        id: "1",
-        name: "Chanel Classic Flap Bag",
-        brand: "Chanel",
-        category: category,
-        price: 8500,
-        originalPrice: 10200,
-        condition: ProductCondition.EXCELLENT,
-        image: "https://picsum.photos/800/800?random=1",
-        authenticityGuaranteed: true,
-        createdAt: new Date("2024-01-15")
-      },
-      {
-        id: "2",
-        name: "Hermès Birkin 35",
-        brand: "Hermès",
-        category: category,
-        price: 45000,
-        originalPrice: 55000,
-        condition: ProductCondition.LIKE_NEW,
-        image: "https://picsum.photos/800/800?random=2",
-        authenticityGuaranteed: true,
-        createdAt: new Date("2024-01-10")
-      },
-      {
-        id: "3",
-        name: "Louis Vuitton Neverfull MM",
-        brand: "Louis Vuitton",
-        category: category,
-        price: 1800,
-        originalPrice: 2200,
-        condition: ProductCondition.VERY_GOOD,
-        image: "https://picsum.photos/800/800?random=1",
-        authenticityGuaranteed: true,
-        createdAt: new Date("2024-01-08")
-      },
-      {
-        id: "4",
-        name: "Gucci GG Marmont Shoulder Bag",
-        brand: "Gucci",
-        category: category,
-        price: 1200,
-        originalPrice: 1500,
-        condition: ProductCondition.EXCELLENT,
-        image: "https://picsum.photos/800/800?random=2",
-        authenticityGuaranteed: true,
-        createdAt: new Date("2024-01-05")
-      },
-      {
-        id: "5",
-        name: "Prada Saffiano Leather Tote",
-        brand: "Prada",
-        category: category,
-        price: 2200,
-        originalPrice: 2800,
-        condition: ProductCondition.LIKE_NEW,
-        image: "https://picsum.photos/800/800?random=1",
-        authenticityGuaranteed: true,
-        createdAt: new Date("2024-01-03")
-      },
-      {
-        id: "6",
-        name: "Dior Lady Dior Bag",
-        brand: "Dior",
-        category: category,
-        price: 4800,
-        originalPrice: 5800,
-        condition: ProductCondition.EXCELLENT,
-        image: "https://picsum.photos/800/800?random=2",
-        authenticityGuaranteed: true,
-        createdAt: new Date("2024-01-01")
-      }
-    ];
-
-    // Filter products based on current filters
-    const filteredProducts = mockProducts.filter(product => {
-      if (filters.brand && filters.brand.length > 0 && !filters.brand.includes(product.brand)) {
+  // Apply filters and sorting to fetched products
+  const filteredProducts = fetchedProducts.filter(product => {
+    if (filters.brand && filters.brand.length > 0 && !filters.brand.includes(product.brand)) {
+      return false;
+    }
+    if (filters.condition && filters.condition.length > 0 && !filters.condition.includes(product.condition as ProductCondition)) {
+      return false;
+    }
+    if (filters.priceRange) {
+      if (product.price < filters.priceRange.min || product.price > filters.priceRange.max) {
         return false;
       }
-      if (filters.condition && filters.condition.length > 0 && !filters.condition.includes(product.condition)) {
-        return false;
-      }
-      if (filters.priceRange) {
-        if (product.price < filters.priceRange.min || product.price > filters.priceRange.max) {
-          return false;
-        }
-      }
-      return true;
-    });
+    }
+    return true;
+  });
 
-    // Sort products
-    filteredProducts.sort((a, b) => {
-      switch (sortBy) {
-        case SortOption.PRICE_LOW_TO_HIGH:
-          return a.price - b.price;
-        case SortOption.PRICE_HIGH_TO_LOW:
-          return b.price - a.price;
-        case SortOption.NEWEST:
-          return b.createdAt.getTime() - a.createdAt.getTime();
-        case SortOption.OLDEST:
-          return a.createdAt.getTime() - b.createdAt.getTime();
-        case SortOption.ALPHABETICAL:
-          return a.name.localeCompare(b.name);
-        default:
-          return 0;
-      }
-    });
+  // Sort products
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    switch (sortBy) {
+      case SortOption.PRICE_LOW_TO_HIGH:
+        return a.price - b.price;
+      case SortOption.PRICE_HIGH_TO_LOW:
+        return b.price - a.price;
+      case SortOption.NEWEST:
+        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+      case SortOption.OLDEST:
+        return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+      case SortOption.ALPHABETICAL:
+        return a.name.localeCompare(b.name);
+      default:
+        return 0;
+    }
+  });
 
-    setProducts(filteredProducts);
-    setLoading(false);
-  }, [category, filters, sortBy]);
-
-  const handleFilterChange = (newFilters: ProductFilters) => {
+  const handleFiltersChange = (newFilters: ProductFilters) => {
     setFilters(newFilters);
   };
 
@@ -158,50 +77,32 @@ export function CategoryPage({ category, searchParams }: CategoryPageProps) {
     setSortBy(newSort);
   };
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="animate-pulse">
-            <div className="h-8 bg-gray-300 rounded w-1/4 mb-4"></div>
-            <div className="h-4 bg-gray-300 rounded w-1/2 mb-8"></div>
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-              <div className="lg:col-span-1">
-                <div className="h-96 bg-gray-300 rounded"></div>
-              </div>
-              <div className="lg:col-span-3">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {[...Array(6)].map((_, i) => (
-                    <div key={i} className="h-80 bg-gray-300 rounded"></div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  const availableBrands = Array.from(new Set(fetchedProducts.map(p => p.brand)));
+  const availableConditions = Array.from(new Set(fetchedProducts.map(p => p.condition)));
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <CategoryHeader category={category} productCount={sortedProducts.length} />
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <CategoryHeader category={category} productCount={products.length} />
-        
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mt-8">
-          <div className="lg:col-span-1">
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* Filters Sidebar */}
+          <div className="lg:w-1/4">
             <CategoryFilters
               filters={filters}
-              onFilterChange={handleFilterChange}
-              category={category}
+              onFiltersChange={handleFiltersChange}
+              availableBrands={availableBrands}
+              availableConditions={availableConditions}
+              sortBy={sortBy}
+              onSortChange={handleSortChange}
             />
           </div>
           
-          <div className="lg:col-span-3">
-            <ProductGrid
-              products={products}
-              sortBy={sortBy}
-              onSortChange={handleSortChange}
+          {/* Products Grid */}
+          <div className="lg:w-3/4">
+            <ProductGrid 
+              products={sortedProducts} 
+              loading={loading}
             />
           </div>
         </div>
