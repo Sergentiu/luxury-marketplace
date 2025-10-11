@@ -6,12 +6,12 @@ import CredentialsProvider from "next-auth/providers/credentials"
 export const authOptions = {
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID || "mock-client-id",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "mock-client-secret",
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
     FacebookProvider({
-      clientId: process.env.FACEBOOK_CLIENT_ID || "mock-client-id",
-      clientSecret: process.env.FACEBOOK_CLIENT_SECRET || "mock-client-secret",
+      clientId: process.env.FACEBOOK_CLIENT_ID!,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET!,
     }),
     CredentialsProvider({
       name: "credentials",
@@ -51,7 +51,8 @@ export const authOptions = {
   pages: {
     signIn: "/authentication",
     signUp: "/authentication",
-  }
+  },
+  debug: process.env.NODE_ENV === "development",
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
