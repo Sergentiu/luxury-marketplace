@@ -31,35 +31,20 @@ export function AccountPage() {
     }
 
     if (session?.user) {
-      // In a real app, you would fetch user data from your API
+      // Set user data from session (no mock data)
       setUser({
         name: session.user.name || "User",
         email: session.user.email || "",
         image: session.user.image || "",
-        phone: "+1 (555) 123-4567", // Mock data
-        memberSince: "January 2024",
-        totalOrders: 5,
-        totalSpent: 8750,
-        loyaltyPoints: 875,
+        phone: "", // Empty for new users
+        memberSince: new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
+        totalOrders: 0,
+        totalSpent: 0,
+        loyaltyPoints: 0,
       });
 
-      // Mock orders data
-      setOrders([
-        {
-          id: "ORD-001",
-          date: "2024-01-15",
-          status: "Delivered",
-          total: 2850,
-          items: 2,
-        },
-        {
-          id: "ORD-002", 
-          date: "2024-01-08",
-          status: "Shipped",
-          total: 1200,
-          items: 1,
-        },
-      ]);
+      // Empty orders array for new users
+      setOrders([]);
     }
 
     setIsLoading(false);
@@ -144,6 +129,7 @@ export function AccountPage() {
               </label>
               <input
                 type="tel"
+                placeholder="Enter your phone number"
                 defaultValue={user?.phone as string}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
               />
@@ -251,20 +237,11 @@ export function AccountPage() {
           <CardTitle>Payment Methods</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4">
-            <div className="border border-gray-200 rounded-lg p-4">
-              <div className="flex justify-between items-center">
-                <div className="flex items-center space-x-3">
-                  <CreditCardIcon className="h-8 w-8 text-gray-400" />
-                  <div>
-                    <div className="font-semibold">**** **** **** 4242</div>
-                    <div className="text-sm text-gray-600">Expires 12/25</div>
-                  </div>
-                </div>
-                <Button variant="outline" size="sm">Remove</Button>
-              </div>
-            </div>
-            <Button className="w-full">Add New Payment Method</Button>
+          <div className="text-center py-12">
+            <CreditCardIcon className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">No Payment Methods</h3>
+            <p className="text-gray-600 mb-6">Add a payment method to make checkout faster and easier.</p>
+            <Button>Add Payment Method</Button>
           </div>
         </CardContent>
       </Card>
@@ -278,24 +255,11 @@ export function AccountPage() {
           <CardTitle>Shipping Addresses</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4">
-            <div className="border border-gray-200 rounded-lg p-4">
-              <div className="flex justify-between items-start">
-                <div>
-                  <div className="font-semibold">{user?.name as string}</div>
-                  <div className="text-sm text-gray-600">
-                    123 Main Street<br />
-                    New York, NY 10001<br />
-                    United States
-                  </div>
-                </div>
-                <div className="flex space-x-2">
-                  <Button variant="outline" size="sm">Edit</Button>
-                  <Button variant="outline" size="sm">Remove</Button>
-                </div>
-              </div>
-            </div>
-            <Button className="w-full">Add New Address</Button>
+          <div className="text-center py-12">
+            <MapPinIcon className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">No Addresses Saved</h3>
+            <p className="text-gray-600 mb-6">Add a shipping address to make checkout faster and easier.</p>
+            <Button>Add Address</Button>
           </div>
         </CardContent>
       </Card>
